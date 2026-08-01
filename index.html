@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart Calculator - Sleek & Fast Single Calculator</title>
-  <meta name="description" content="A sleek, modern, single calculator featuring standard & scientific functions, memory, history, and beautiful custom themes.">
+  <title>Smart Calculator - Clean Light Calculator</title>
+  <meta name="description" content="A sleek, modern, light mode single calculator featuring standard & scientific functions, memory, and history.">
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,7 +23,6 @@
 
       <div class="header-controls">
         <button class="mode-toggle-btn" id="sciToggleBtn" title="Toggle Scientific Keypad">🧪 Scientific</button>
-        <button class="icon-btn" id="themeBtn" title="Change Theme" aria-label="Toggle Theme">🌙</button>
         <button class="icon-btn" id="historyBtn" title="Calculation History" aria-label="View History">📜</button>
         <button class="icon-btn" id="settingsBtn" title="App Settings" aria-label="Open Settings">⚙️</button>
       </div>
@@ -124,20 +123,9 @@
     <!-- Settings Modal -->
     <div class="modal-overlay" id="settingsModal">
       <div class="modal-content">
-        <div style="display:flex; justify-style:space-between; align-items:center; border-bottom:1px solid var(--bg-input); padding-bottom:10px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--bg-input); padding-bottom:10px;">
           <h3 style="font-weight:700;">⚙️ Calculator Settings</h3>
           <button class="icon-btn" id="closeSettingsBtn">✕</button>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" for="themeSelect">Theme Preset</label>
-          <select class="form-control" id="themeSelect">
-            <option value="dark">Dark Glass (Default)</option>
-            <option value="light">Light Mode</option>
-            <option value="cyberpunk">Cyberpunk Neon</option>
-            <option value="sunset">Sunset Gold</option>
-            <option value="emerald">Emerald Slate</option>
-          </select>
         </div>
 
         <div class="form-group">
