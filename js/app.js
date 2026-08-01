@@ -1,10 +1,9 @@
 /* ==========================================================================
-   Single Calculator Application Manager & UI Orchestrator
+   Single Light Calculator Application Manager
    ========================================================================== */
 
 class AppManager {
   constructor() {
-    this.theme = localStorage.getItem('smart_calc_theme') || 'dark';
     this.precision = parseInt(localStorage.getItem('smart_calc_precision')) || 4;
     this.soundEnabled = localStorage.getItem('smart_calc_sound') !== 'off';
     this.vibrationEnabled = localStorage.getItem('smart_calc_vibration') !== 'off';
@@ -19,14 +18,13 @@ class AppManager {
   }
 
   initTheme() {
-    document.documentElement.setAttribute('data-theme', this.theme);
+    document.documentElement.setAttribute('data-theme', 'light');
   }
 
   initElements() {
     this.sciToggleBtn = document.getElementById('sciToggleBtn');
     this.sciPanel = document.getElementById('sciPanel');
     this.degRadIndicator = document.getElementById('degRadIndicator');
-    this.themeBtn = document.getElementById('themeBtn');
     this.historyBtn = document.getElementById('historyBtn');
     this.historyDrawer = document.getElementById('historyDrawer');
     this.closeHistoryBtn = document.getElementById('closeHistoryBtn');
@@ -38,12 +36,10 @@ class AppManager {
     this.copyResultBtn = document.getElementById('copyResultBtn');
 
     // Settings Controls
-    this.themeSelect = document.getElementById('themeSelect');
     this.precisionSelect = document.getElementById('precisionSelect');
     this.soundToggle = document.getElementById('soundToggle');
     this.vibrationToggle = document.getElementById('vibrationToggle');
 
-    if (this.themeSelect) this.themeSelect.value = this.theme;
     if (this.precisionSelect) this.precisionSelect.value = String(this.precision);
     if (this.soundToggle) this.soundToggle.value = this.soundEnabled ? 'on' : 'off';
     if (this.vibrationToggle) this.vibrationToggle.value = this.vibrationEnabled ? 'on' : 'off';
@@ -60,15 +56,6 @@ class AppManager {
           this.degRadIndicator.classList.toggle('hidden', !this.isSciActive);
         }
         this.playFeedback();
-      });
-    }
-
-    // Theme Button Quick Cycle
-    if (this.themeBtn) {
-      this.themeBtn.addEventListener('click', () => {
-        const themes = ['dark', 'light', 'cyberpunk', 'sunset', 'emerald'];
-        const nextIdx = (themes.indexOf(this.theme) + 1) % themes.length;
-        this.setTheme(themes[nextIdx]);
       });
     }
 
@@ -110,9 +97,6 @@ class AppManager {
       });
     }
 
-    if (this.themeSelect) {
-      this.themeSelect.addEventListener('change', (e) => this.setTheme(e.target.value));
-    }
     if (this.precisionSelect) {
       this.precisionSelect.addEventListener('change', (e) => {
         this.precision = parseInt(e.target.value);
@@ -141,14 +125,6 @@ class AppManager {
         this.showToast(`Copied ${resText} to clipboard! 📋`);
       });
     }
-  }
-
-  setTheme(themeName) {
-    this.theme = themeName;
-    document.documentElement.setAttribute('data-theme', themeName);
-    localStorage.setItem('smart_calc_theme', themeName);
-    if (this.themeSelect) this.themeSelect.value = themeName;
-    this.showToast(`Theme changed to ${themeName.toUpperCase()}`);
   }
 
   bindKeyboardShortcuts() {
